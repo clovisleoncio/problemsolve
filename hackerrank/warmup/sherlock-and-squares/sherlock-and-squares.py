@@ -5,9 +5,7 @@ from math import sqrt
 numberOfTestCases = int(raw_input());
 
 for i in xrange(numberOfTestCases):
-    input = raw_input().split();
-    a = int(input[0]);
-    b = int(input[1]);
+    a, b = [int(x) for x in raw_input().split()];
 
     a = int(sqrt(a));
     b = int(sqrt(b));

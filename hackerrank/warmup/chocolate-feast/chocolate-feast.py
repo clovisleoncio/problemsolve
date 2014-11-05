@@ -3,10 +3,7 @@
 numberOfTestCases = int(raw_input());
 
 for i in xrange(numberOfTestCases):
-    input = raw_input().split();
-    money = int(input[0]);
-    price = int(input[1]);
-    gift = int(input[2]);
+    money, price, gift = [int(x) for x in raw_input().split()];
 
     chocolates = money / price;
     packages = chocolates;
