@@ -1,5 +1,13 @@
 #!/usr/bin/env python
 
+def calc(a, b, n, value, list):
+	if n == 1:
+		list.add(value + a);
+		list.add(value + b);
+	else:
+		calc(a, b, n - 1, value + a, list);
+		calc(a, b, n - 1, value + b, list);
+
 numberOfTestCases = int(raw_input());
 
 for i in xrange(numberOfTestCases):
@@ -7,12 +15,10 @@ for i in xrange(numberOfTestCases):
     a = int(raw_input());
     b = int(raw_input());
 
-    combinations = 2 ** n;
+    results = set([]);
 
-    mask = '{0:0' + str(n) + 'b}';
+    calc(a, b, n, 0, results);
 
-    results = [mask.format(k).count('0') * a + mask.format(k).count('1') * b for k in xrange(combinations)];
-
-    results = sorted(set(results));
+    results = sorted(results);
 
     print ' '.join(str(x) for x in results);
