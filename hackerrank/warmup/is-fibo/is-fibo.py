@@ -8,6 +8,6 @@ for i in xrange(numberOfTestCases):
     n = long(raw_input());
 
     if sqrt(5 * (n**2) + 4) % 1 == 0 or sqrt(5 * (n**2) - 4) % 1 == 0:
-        print 'isFibo';
+        print 'IsFibo';
     else:
-        print 'isNotFibo';
+        print 'IsNotFibo';
