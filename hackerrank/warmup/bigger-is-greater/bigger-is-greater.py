@@ -10,6 +10,8 @@ def findNext(w):
 			if w[i] > w[j]:
 				return w[:j] + w[i] + w[j] + ''.join(x for x in sorted(w[j+1:i] + w[i+1:]));
 
+	return 'no answer'
+
 for i in xrange(numberOfTestCases):
 	w = raw_input();
 
