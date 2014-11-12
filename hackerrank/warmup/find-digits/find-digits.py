@@ -9,7 +9,7 @@ for i in xrange(numberOfTestCases):
 	divisors = 0;
 
 	for c in n:
-		if n_int % int(c) == 0:
+		if c != '0' and n_int % int(c) == 0:
 			divisors = divisors + 1;
 
 	print divisors;
