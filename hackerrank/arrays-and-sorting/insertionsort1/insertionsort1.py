@@ -8,7 +8,7 @@ count = len(numbers) - 1;
 
 out = numbers[count];
 
-while numbers[count - 1] > out:
+while numbers[count - 1] > out and count >= 1:
 	numbers[count] = numbers[count - 1];
 	print ' '.join(str(x) for x in numbers);
 	count = count - 1;
