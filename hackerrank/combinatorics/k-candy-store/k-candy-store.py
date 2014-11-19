@@ -13,4 +13,4 @@ for x in xrange(int(raw_input())):
 	n = int(raw_input());
 	k = int(raw_input());
 
-	print fatorial(n + k - 1) / (fatorial(k) * fatorial(n - 1));
+	print (fatorial(n + k - 1) / (fatorial(k) * fatorial(n - 1))) % 10**9;
