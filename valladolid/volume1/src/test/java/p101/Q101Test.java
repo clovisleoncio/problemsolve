@@ -62,11 +62,6 @@ public class Q101Test {
 	}
 	
 	@Test
-	public void deveExecutarPileOver() {
-		fail();
-	}
-	
-	@Test
 	public void deveIgnorarIguais() {
 		Q101 q101 = new Q101(10);
 		assertEquals(1, q101.pilhas[9].size());
