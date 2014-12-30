@@ -7,70 +7,63 @@ import java.util.StringTokenizer;
 public class Main {
 	
 	public static void main(String[] args) throws Exception {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		
 		Q105 q105 = new Q105();
-
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-		String linha;
 		
-		while ((linha = in.readLine()) != null) {
-			linha = linha.trim();
-			if (!linha.equals("")) {
-				StringTokenizer stk = new StringTokenizer(linha);
-				int inicio = Integer.parseInt(stk.nextToken());
-				int altura = Integer.parseInt(stk.nextToken());
-				int fim = Integer.parseInt(stk.nextToken());
-				q105.addBuilding(inicio, altura, fim);
-			}
+		String linha;
+		while ( (linha = in.readLine()) != null) {
+			q105.addBuilding(linha);
 		}
-
+		
 		q105.print();
+		
+		in.close();
 	}
 
 	public static class Q105 {
-
-		private static final int LIMITE = 10000;
 		
-		private int[] skyline = new int[LIMITE * 2 + 1];
-		int ultimoX = -LIMITE;
-		int primeiroX = LIMITE;
+		private static final int LIMIT = 10000;
+		private int[] skyline = new int[LIMIT * 2 + 1]; // +1 para permitir 0
 		
-		public Q105() {
-			for (int i = 0; i < skyline.length; i++) {
-				skyline[i] = 0;
-			}
-		}
-		
-		public int getAltura(int i) {
-			return skyline[i + LIMITE];
+		public void addBuilding(String string) {
+			StringTokenizer stk = new StringTokenizer(string);
+			addBuilding(Integer.parseInt(stk.nextToken()), Integer.parseInt(stk.nextToken()), Integer.parseInt(stk.nextToken()));
 		}
 
-		public void addBuilding(int inicio, int altura, int fim) {
-			for (int i = inicio; i < fim; i++) {
-				if (skyline[i + LIMITE] < altura) {
-					skyline[i + LIMITE] = altura;
+		public void addBuilding(int left, int height, int right) {
+			
+			int adjustedLeft = adjust(left);
+			int adjustedRight = adjust(right);
+			
+			for (int i = adjustedLeft; i < adjustedRight; i++) {
+				if (skyline[i] < height) {
+					skyline[i] = height;
 				}
 			}
-			if (fim > ultimoX) {
-				ultimoX = fim;
-			}
-			if (inicio < primeiroX) {
-				primeiroX = inicio;
-			}
+		}
+
+		public Object getHeight(int i) {
+			return skyline[adjust(i)];
 		}
 		
+		private int adjust(int index) {
+			return index + LIMIT;
+		}
+
 		public void print() {
-			int valor = 0;
+			int referencia = 0;
+			
 			String separador = "";
-			for (int i = primeiroX; i <= ultimoX; i++) {
-				if (skyline[i + LIMITE] != valor) {
-					valor = skyline[i + LIMITE];
-					System.out.print(String.format("%s%d %d", separador, i, valor));
+			for (int i = 0; i < skyline.length; i++) {
+				if (skyline[i] != referencia) {
+					System.out.print(String.format("%s%d %d", separador, i - LIMIT, skyline[i]));
+					referencia = skyline[i];
 					separador = " ";
 				}
 			}
 		}
-		
+
 	}
-	
+
 }
