@@ -1,4 +1,4 @@
-package p1055;
+package p10055;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

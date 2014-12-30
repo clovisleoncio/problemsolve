@@ -1,9 +1,12 @@
-package p1038;
+package p10038;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
-public class Q1038Test {
+import p10038.Main;
+
+public class Q10038Test {
 	
 	@Test
 	public void deveIdentificarTamanho1Jolly() {
