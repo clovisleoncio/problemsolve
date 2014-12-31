@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import p118.Main.Q118;
-import static p118.Main.Q118.Direction.*;
+import static p118.Main.Direction.*;
 
 public class Q118Test {
 	

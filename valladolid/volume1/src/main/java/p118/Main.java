@@ -6,8 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import p118.Main.Q118.Direction;
-
 public class Main {
 	
 	public static void main(String[] args) throws Exception {
@@ -25,6 +23,37 @@ public class Main {
 		
 		in.close();
 	}
+	
+	public static enum Direction {
+		N(0, 1), E(1, 0), S(0, -1), W(-1, 0);
+
+		public static int getIndex(Direction reference) {
+			for (int i = 0; i < values().length; i++) {
+				if (values()[i] == reference) {
+					return i;
+				}
+			}
+			return -1;
+		}
+		
+		private int x;
+		private int y;
+
+		Direction(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
+
+		public int getX() {
+			return x;
+		}
+
+		public int getY() {
+			return y;
+		}
+		
+	}
+
 	
 	public static class Coordinate {
 		
@@ -77,35 +106,6 @@ public class Main {
 
 	public static class Q118 {
 		
-		enum Direction {
-			N(0, 1), E(1, 0), S(0, -1), W(-1, 0);
-
-			public static int getIndex(Direction reference) {
-				for (int i = 0; i < values().length; i++) {
-					if (values()[i] == reference) {
-						return i;
-					}
-				}
-				return -1;
-			}
-			
-			private int x;
-			private int y;
-
-			Direction(int x, int y) {
-				this.x = x;
-				this.y = y;
-			}
-
-			public int getX() {
-				return x;
-			}
-
-			public int getY() {
-				return y;
-			}
-			
-		}
 
 		private int width;
 		private int height;
