@@ -9,7 +9,15 @@ import p105.Main.Q105;
 public class Q105Test {
 	
 	@Test
-	public void testeFormarSkyline() {
+	public void deveAdicionarString() {
+		Q105 q105 = new Q105();
+		q105.addBuilding("1  11  5");
+		assertEquals(11, q105.getHeight(1));
+		assertEquals(0, q105.getHeight(5));
+	}
+	
+	@Test
+	public void deveFormarSkyline() {
 		Q105 q105 = new Q105();
 		
 		q105.addBuilding(1, 11, 5);
@@ -21,18 +29,18 @@ public class Q105Test {
 		q105.addBuilding(23, 13, 29);
 		q105.addBuilding(24, 4, 28);
 		
-		assertEquals(11, q105.getAltura(1));
-		assertEquals(13, q105.getAltura(3));
-		assertEquals(0, q105.getAltura(9));
-		assertEquals(7, q105.getAltura(12));
-		assertEquals(3, q105.getAltura(16));
-		assertEquals(18, q105.getAltura(19));
-		assertEquals(3, q105.getAltura(22));
-		assertEquals(13, q105.getAltura(23));
-		assertEquals(0, q105.getAltura(29));
+		assertEquals(11, q105.getHeight(1));
+		assertEquals(13, q105.getHeight(3));
+		assertEquals(0, q105.getHeight(9));
+		assertEquals(7, q105.getHeight(12));
+		assertEquals(3, q105.getHeight(16));
+		assertEquals(18, q105.getHeight(19));
+		assertEquals(3, q105.getHeight(22));
+		assertEquals(13, q105.getHeight(23));
+		assertEquals(0, q105.getHeight(29));
 		
 		q105.print();
-		System.out.println();
+
 	}
 	
 	@Test
@@ -59,32 +67,50 @@ public class Q105Test {
 		q105.addBuilding(38, 2, 44);
 		q105.addBuilding(45, 1, 46);
 
-		assertEquals(5, q105.getAltura(-5));
-		assertEquals(6, q105.getAltura(1));
-		assertEquals(2, q105.getAltura(2));
-		assertEquals(12, q105.getAltura(3));
-		assertEquals(15, q105.getAltura(8));
-		assertEquals(12, q105.getAltura(12));
-		assertEquals(5, q105.getAltura(13));
-		assertEquals(14, q105.getAltura(16));
-		assertEquals(5, q105.getAltura(19));
-		assertEquals(0, q105.getAltura(20));
-		assertEquals(2, q105.getAltura(21));
-		assertEquals(0, q105.getAltura(22));
-		assertEquals(1, q105.getAltura(23));
-		assertEquals(12, q105.getAltura(26));
-		assertEquals(10, q105.getAltura(27));
-		assertEquals(1, q105.getAltura(28));
-		assertEquals(0, q105.getAltura(30));
-		assertEquals(5, q105.getAltura(32));
-		assertEquals(3, q105.getAltura(36));
-		assertEquals(2, q105.getAltura(40));
-		assertEquals(0, q105.getAltura(44));
-		assertEquals(1, q105.getAltura(45));
-		assertEquals(0, q105.getAltura(46));
+		assertEquals(5, q105.getHeight(-5));
+		assertEquals(6, q105.getHeight(1));
+		assertEquals(2, q105.getHeight(2));
+		assertEquals(12, q105.getHeight(3));
+		assertEquals(15, q105.getHeight(8));
+		assertEquals(12, q105.getHeight(12));
+		assertEquals(5, q105.getHeight(13));
+		assertEquals(14, q105.getHeight(16));
+		assertEquals(5, q105.getHeight(19));
+		assertEquals(0, q105.getHeight(20));
+		assertEquals(2, q105.getHeight(21));
+		assertEquals(0, q105.getHeight(22));
+		assertEquals(1, q105.getHeight(23));
+		assertEquals(12, q105.getHeight(26));
+		assertEquals(10, q105.getHeight(27));
+		assertEquals(1, q105.getHeight(28));
+		assertEquals(0, q105.getHeight(30));
+		assertEquals(5, q105.getHeight(32));
+		assertEquals(3, q105.getHeight(36));
+		assertEquals(2, q105.getHeight(40));
+		assertEquals(0, q105.getHeight(44));
+		assertEquals(1, q105.getHeight(45));
+		assertEquals(0, q105.getHeight(46));
 
-		q105.print();
-		System.out.println();
+	}
+
+	@Test
+	public void devePermitirLimitePositivo() {
+		Q105 q105 = new Q105();
+		
+		q105.addBuilding(9999, 2, 10000);
+		
+		assertEquals(2, q105.getHeight(9999));
+		assertEquals(0, q105.getHeight(10000));
+	}
+	
+	@Test
+	public void devePermitirLimiteNegativo() {
+		Q105 q105 = new Q105();
+		
+		q105.addBuilding(-10000, 2, -9999);
+		
+		assertEquals(2, q105.getHeight(-10000));
+		assertEquals(0, q105.getHeight(-9999));
 	}
 	
 }

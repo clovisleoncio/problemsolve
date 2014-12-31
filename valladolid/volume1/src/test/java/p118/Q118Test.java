@@ -5,213 +5,213 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import p118.Main.Q118;
+import static p118.Main.Q118.Direction.*;
 
 public class Q118Test {
 	
 	@Test
-	public void deveObterIndiceDirecao() {
-		
+	public void deveColocarRoboMundo() {
 		Q118 q118 = new Q118(5, 3);
 		
-		assertEquals(0, q118.indiceDirecao("N"));
-		assertEquals(1, q118.indiceDirecao("E"));
-		assertEquals(2, q118.indiceDirecao("S"));
-		assertEquals(3, q118.indiceDirecao("W"));
+		q118.init(2, 3, N);
+		
+		assertEquals(2, q118.getCoordinate().getX());
+		assertEquals(3, q118.getCoordinate().getY());
+		assertEquals(N, q118.getDirection());
 	}
 
 	@Test
 	public void deveGirarEsquerda() {
 		Q118 q118 = new Q118(5, 3);
-		q118.init(1, 1, "N");
+		q118.init(1, 1, N);
 		
-		assertEquals("N", q118.letraDirecao());
-		q118.girarEsquerda();
-		assertEquals("W", q118.letraDirecao());
-		q118.girarEsquerda();
-		assertEquals("S", q118.letraDirecao());
-		q118.girarEsquerda();
-		assertEquals("E", q118.letraDirecao());
-		q118.girarEsquerda();
-		assertEquals("N", q118.letraDirecao());
+		assertEquals(N, q118.getDirection());
+		q118.turnLeft();
+		assertEquals(W, q118.getDirection());
+		q118.turnLeft();
+		assertEquals(S, q118.getDirection());
+		q118.turnLeft();
+		assertEquals(E, q118.getDirection());
+		q118.turnLeft();
+		assertEquals(N, q118.getDirection());
 	}
 	
 	@Test
 	public void deveGirarDireita() {
 		Q118 q118 = new Q118(5, 3);
-		q118.init(1, 1, "N");
+		q118.init(1, 1, N);
 		
-		assertEquals("N", q118.letraDirecao());
-		q118.girarDireita();
-		assertEquals("E", q118.letraDirecao());
-		q118.girarDireita();
-		assertEquals("S", q118.letraDirecao());
-		q118.girarDireita();
-		assertEquals("W", q118.letraDirecao());
-		q118.girarDireita();
-		assertEquals("N", q118.letraDirecao());
+		assertEquals(N, q118.getDirection());
+		q118.turnRight();
+		assertEquals(E, q118.getDirection());
+		q118.turnRight();
+		assertEquals(S, q118.getDirection());
+		q118.turnRight();
+		assertEquals(W, q118.getDirection());
+		q118.turnRight();
+		assertEquals(N, q118.getDirection());
 	}
 	
 	@Test
 	public void deveAndarNorte() {
 		Q118 q118 = new Q118(5, 3);
-		q118.init(1, 1, "N");
+		q118.init(1, 1, N);
 		
-		q118.andar();
-		assertEquals(1, q118.x);
-		assertEquals(2, q118.y);
+		q118.forward();
+		assertEquals(1, q118.getCoordinate().getX());
+		assertEquals(2, q118.getCoordinate().getY());
 	}
 	
 	@Test
 	public void deveAndarSul() {
 		Q118 q118 = new Q118(5, 3);
-		q118.init(1, 1, "S");
+		q118.init(1, 1, S);
 		
-		q118.andar();
-		assertEquals(1, q118.x);
-		assertEquals(0, q118.y);
+		q118.forward();
+		assertEquals(1, q118.getCoordinate().getX());
+		assertEquals(0, q118.getCoordinate().getY());
 	}
 	
 	@Test
 	public void deveAndarLeste() {
 		Q118 q118 = new Q118(5, 3);
-		q118.init(1, 1, "E");
+		q118.init(1, 1, E);
 		
-		q118.andar();
-		assertEquals(2, q118.x);
-		assertEquals(1, q118.y);
+		q118.forward();
+		assertEquals(2, q118.getCoordinate().getX());
+		assertEquals(1, q118.getCoordinate().getY());
 	}
 	
 	@Test
 	public void deveAndarOeste() {
 		Q118 q118 = new Q118(5, 3);
-		q118.init(1, 1, "W");
+		q118.init(1, 1, W);
 		
-		q118.andar();
-		assertEquals(0, q118.x);
-		assertEquals(1, q118.y);
+		q118.forward();
+		assertEquals(0, q118.getCoordinate().getX());
+		assertEquals(1, q118.getCoordinate().getY());
 	}
 	
 	@Test
 	public void deveIndicarQueSaiu() {
 		Q118 q118 = new Q118(5, 3);
-		q118.init(1, 1, "S");
+		q118.init(1, 1, S);
 		
-		assertTrue(q118.andar());
-		assertFalse(q118.andar());
+		assertTrue(q118.forward());
+		assertFalse(q118.forward());
 	}
 	
 	@Test
 	public void deveIgnorarOndeRoboAnteriorSaiu() {
 		Q118 q118 = new Q118(5, 3);
-		q118.init(1, 1, "S");
+		q118.init(1, 1, S);
 		
-		assertTrue(q118.andar());
-		assertFalse(q118.andar());
+		assertTrue(q118.forward());
+		assertFalse(q118.forward());
 		
-		q118.init(1, 1, "S");
+		q118.init(1, 1, S);
 		
-		assertTrue(q118.andar());
-		assertEquals(1, q118.x);
-		assertEquals(0, q118.y);
-		assertTrue(q118.andar());
-		assertEquals(1, q118.x);
-		assertEquals(0, q118.y);
+		assertTrue(q118.forward());
+		assertEquals(1, q118.getCoordinate().getX());
+		assertEquals(0, q118.getCoordinate().getY());
+		assertTrue(q118.forward());
+		assertEquals(1, q118.getCoordinate().getX());
+		assertEquals(0, q118.getCoordinate().getY());
 	}
 	
 	@Test
 	public void deveResolverInputPassoAPasso() {
 		Q118 q118 = new Q118(5, 3);
 		
-		q118.init(1, 1, "E");
-		q118.girarDireita();
-		q118.andar();
-		q118.girarDireita();
-		q118.andar();
-		q118.girarDireita();
-		q118.andar();
-		q118.girarDireita();
-		q118.andar();
+		q118.init(1, 1, E);
+		q118.turnRight();
+		q118.forward();
+		q118.turnRight();
+		q118.forward();
+		q118.turnRight();
+		q118.forward();
+		q118.turnRight();
+		q118.forward();
 		
-		assertEquals(1, q118.x);
-		assertEquals(1, q118.y);
-		assertEquals("E", q118.letraDirecao());
+		assertEquals(1, q118.getCoordinate().getX());
+		assertEquals(1, q118.getCoordinate().getY());
+		assertEquals(E, q118.getDirection());
 		
-		q118.init(3, 2, "N");
-		q118.andar();
-		q118.girarDireita();
-		q118.girarDireita();
-		q118.andar();
-		q118.girarEsquerda();
-		q118.girarEsquerda();
-		q118.andar();
-		assertFalse(q118.andar());
+		q118.init(3, 2, N);
+		q118.forward();
+		q118.turnRight();
+		q118.turnRight();
+		q118.forward();
+		q118.turnLeft();
+		q118.turnLeft();
+		q118.forward();
+		assertFalse(q118.forward());
 		
-		assertEquals(3, q118.x);
-		assertEquals(3, q118.y);
-		assertEquals("N", q118.letraDirecao());
+		assertEquals(3, q118.getCoordinate().getX());
+		assertEquals(3, q118.getCoordinate().getY());
+		assertEquals(N, q118.getDirection());
 
-		q118.init(0, 3, "W");
-		q118.girarEsquerda();
-		q118.girarEsquerda();
-		q118.andar();
-		q118.andar();
-		q118.andar();
-		q118.girarEsquerda();
-		q118.andar();
-		q118.girarEsquerda();
-		q118.andar();
-		q118.girarEsquerda();
+		q118.init(0, 3, W);
+		q118.turnLeft();
+		q118.turnLeft();
+		q118.forward();
+		q118.forward();
+		q118.forward();
+		q118.turnLeft();
+		q118.forward();
+		q118.turnLeft();
+		q118.forward();
+		q118.turnLeft();
 
-		assertEquals(2, q118.x);
-		assertEquals(3, q118.y);
-		assertEquals("S", q118.letraDirecao());
+		assertEquals(2, q118.getCoordinate().getX());
+		assertEquals(3, q118.getCoordinate().getY());
+		assertEquals(S, q118.getDirection());
 	}
 	
 	@Test
 	public void deveResolverStrings() {
 		Q118 q118 = new Q118(5, 3);
 		
-		q118.init(1, 1, "E");
-		q118.executar("RFRFRFRF");
+		q118.init(1, 1, E);
+		q118.execute("RFRFRFRF");
 
-		assertEquals(1, q118.x);
-		assertEquals(1, q118.y);
-		assertEquals("E", q118.letraDirecao());
+		assertEquals(1, q118.getCoordinate().getX());
+		assertEquals(1, q118.getCoordinate().getY());
+		assertEquals(E, q118.getDirection());
 
-		q118.init(3, 2, "N");
-		q118.executar("FRRFLLFFRRFLL");
+		q118.init(3, 2, N);
+		q118.execute("FRRFLLFFRRFLL");
 
-		assertEquals(3, q118.x);
-		assertEquals(3, q118.y);
-		assertEquals("N", q118.letraDirecao());
+		assertEquals(3, q118.getCoordinate().getX());
+		assertEquals(3, q118.getCoordinate().getY());
+		assertEquals(N, q118.getDirection());
 
-		q118.init(0, 3, "W");
-		q118.executar("LLFFFLFLFL");
+		q118.init(0, 3, W);
+		q118.execute("LLFFFLFLFL");
 
-		assertEquals(2, q118.x);
-		assertEquals(3, q118.y);
-		assertEquals("S", q118.letraDirecao());
-
+		assertEquals(2, q118.getCoordinate().getX());
+		assertEquals(3, q118.getCoordinate().getY());
+		assertEquals(S, q118.getDirection());
 	}
 	
 	@Test
 	public void deveObterEstadoFinal() {
 		Q118 q118 = new Q118(5, 3);
 		
-		q118.init(1, 1, "E");
-		q118.executar("RFRFRFRF");
+		q118.init(1, 1, E);
+		q118.execute("RFRFRFRF");
 		
-		assertEquals("1 1 E", q118.getEstadoFinal());
+		assertEquals("1 1 E", q118.getFinalState());
 
-		q118.init(3, 2, "N");
-		q118.executar("FRRFLLFFRRFLL");
+		q118.init(3, 2, N);
+		q118.execute("FRRFLLFFRRFLL");
 
-		assertEquals("3 3 N LOST", q118.getEstadoFinal());
+		assertEquals("3 3 N LOST", q118.getFinalState());
 
-		q118.init(0, 3, "W");
-		q118.executar("LLFFFLFLFL");
+		q118.init(0, 3, W);
+		q118.execute("LLFFFLFLFL");
 
-		assertEquals("2 3 S", q118.getEstadoFinal());
+		assertEquals("2 3 S", q118.getFinalState());
 	}
 
 }
