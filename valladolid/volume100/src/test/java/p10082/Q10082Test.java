@@ -1,7 +1,6 @@
 package p10082;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -27,7 +26,6 @@ public class Q10082Test {
 		assertEquals('Y', q10082.translate('U'));
 		assertEquals('.', q10082.translate('/'));
 		assertEquals(' ', q10082.translate(' '));
-		fail();
 	}
 	
 	@Test
@@ -35,7 +33,6 @@ public class Q10082Test {
 		Q10082 q10082 = new Q10082();
 		
 		assertEquals("I AM FINE TODAY.", q10082.translate("O S, GOMR YPFSU/"));
-		fail();
 	}
 
 }
