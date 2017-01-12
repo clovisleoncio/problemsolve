@@ -7,7 +7,6 @@ import (
 const testVersion = 4
 
 type Clock struct {
-
 	hour   int
 	minute int
 }
@@ -33,7 +32,7 @@ func (clock Clock) Add(minutes int) Clock {
 
 	clock.minute += minutes
 	if clock.minute >= 0 {
-		clock.hour = (clock.hour + clock.minute / 60) % 24
+		clock.hour = (clock.hour + clock.minute/60) % 24
 		clock.minute = clock.minute % 60
 	} else {
 		for clock.minute < 0 {
