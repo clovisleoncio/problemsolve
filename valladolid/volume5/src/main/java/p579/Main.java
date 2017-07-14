@@ -1,23 +1,34 @@
 package p579;
 
+import java.util.Scanner;
 
 public class Main {
 	
 	public static void main(String[] args) {
 		
-		calcular(12, 0);
-		calcular(9, 0);
-		calcular(8, 10);
+		Scanner scanner = new Scanner(System.in);
 		
+		String input;
+		
+		while ( !(input = scanner.next()).trim().equals("0:00") ) {
+			String[] tokens = input.split(":");
+			int hour = Integer.parseInt(tokens[0]);
+			int minute = Integer.parseInt(tokens[1]);
+			System.out.printf("%.3f\n", calcular(hour, minute));
+		}
+		
+		scanner.close();
 	}
 
-	private static void calcular(int hora, int minuto) {
-		double d = (hora * 60 - minuto) / 2d;
-		System.out.println(d);
-		if (d > 180) {
-			d = 360 - d;
+	private static double calcular(int hour, int minute) {
+		double hourHand = hour * 30 + (0.5d * minute);
+		double minuteHand = 6d * minute;
+		double difference = hourHand - minuteHand;
+		difference = Math.abs(difference);
+		if (difference > 180) {
+			difference = 360 - difference;
 		}
-		System.out.println(d);
+		return difference;
 	}
 
 }
